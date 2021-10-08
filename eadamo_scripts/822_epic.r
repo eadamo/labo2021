@@ -56,7 +56,7 @@ kapply_mes       <- c(202101)  #El mes donde debo aplicar el modelo
 ktest_mes_hasta  <- 202011  #Esto es lo que uso para testing
 ktest_mes_desde  <- 202011
 
-ktrain_subsampling  <- 1   #el undersampling que voy a hacer de los continua
+ktrain_subsampling  <- 0.1   #el undersampling que voy a hacer de los continua
 
 ktrain_mes_hasta    <- 202010  #Obviamente, solo puedo entrenar hasta 202011
 ktrain_mes_desde    <- 201901  
@@ -437,6 +437,7 @@ dataset[    foto_mes>= ktest_mes_desde &
           test:= 1L ]  #donde entreno
 
 
+
 #los campos que se van a utilizar
 campos_buenos  <- setdiff( colnames(dataset), 
                            c("clase_ternaria","clase01", "generacion_final", "entrenamiento", "validacion", "test", "fold", campos_malos) )
@@ -485,6 +486,7 @@ if(!file.exists(kbayesiana)) {
 } else {
   run  <- mboContinue( kbayesiana )   #retomo en caso que ya exista
 }
+
 
 
 #apagado de la maquina virtual, pero NO se borra
